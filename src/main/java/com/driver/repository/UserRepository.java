@@ -56,7 +56,7 @@ public class UserRepository{
 			 }
 		 }
 		 
-		 Collections.sort(l);
+		if(l.size()>1) Collections.sort(l);
 		 
 		 return l.get(0);
 		  
