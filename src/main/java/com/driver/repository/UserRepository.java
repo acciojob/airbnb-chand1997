@@ -44,9 +44,8 @@ public class UserRepository{
 	 public String getHotelWithMostFacilities() {
 		 int max=-1;
 		 for(String name:hotelsDb.keySet()) {
-			 if(hotelsDb.get(name).getFacilities().size()>max) {
-				 max=hotelsDb.get(name).getFacilities().size();
-			 }
+
+			 max=Math.max(max,hotelsDb.get(name).getFacilities().size());
 		 }
 		 if(max<1) return "";
 		 List<String> l=new ArrayList<>();
