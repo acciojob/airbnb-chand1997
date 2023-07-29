@@ -30,7 +30,7 @@ public class UserRepository{
 	
 	
 	public String addHotel(Hotel hotel){
-		if(hotel==null || hotel.getHotelName()==null || hotelsDb.containsKey(hotel)) return "FAILURE";
+		if(hotel==null || hotel.getHotelName()==null || hotelsDb.containsKey(hotel.getHotelName())) return "FAILURE";
 		hotelsDb.put(hotel.getHotelName(), hotel);
 		return "SUCCESS";
 	}
