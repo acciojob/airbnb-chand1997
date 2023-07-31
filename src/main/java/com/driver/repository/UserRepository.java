@@ -61,31 +61,33 @@ public class UserRepository{
 		 return l.get(0);
 		  
 	 }
-	 
-	 public int bookARoom(Booking booking){
-		 String hotelName=booking.getHotelName();
-		 
-		 int roomsBooked=booking.getNoOfRooms();
-		 
-		 if(roomsBooked<hotelsDb.get(hotelName).getAvailableRooms()) return -1;
-		 
-		 int leftRooms=hotelsDb.get(hotelName).getAvailableRooms()-roomsBooked;
-		 
-		 hotelsDb.get(hotelName).setAvailableRooms(leftRooms);
-		 
-		 int totalamount=hotelsDb.get(hotelName).getPricePerNight()*roomsBooked;
-		 
-		 booking.setAmountToBePaid(totalamount);
-		 
+
+	public int bookARoom(Booking booking){
+		String hotelName=booking.getHotelName();
+
+		int roomsBooked=booking.getNoOfRooms();
+
+		if(hotelsDb.isEmpty() || !hotelsDb.containsKey(hotelName)) return -1;
+
+		if(roomsBooked>hotelsDb.get(hotelName).getAvailableRooms()) return -1;
+
+		int leftRooms=hotelsDb.get(hotelName).getAvailableRooms()-roomsBooked;
+
+		hotelsDb.get(hotelName).setAvailableRooms(leftRooms);
+
+		int totalamount=hotelsDb.get(hotelName).getPricePerNight()*roomsBooked;
+
+		booking.setAmountToBePaid(totalamount);
+
 		String bookingId= UUID.randomUUID().toString();
-		
+
 		booking.setBookingId(bookingId);
-		
+
 		bookingsDb.put(bookingId, booking);
-		
+
 		return totalamount;
-		 
-	 }
+
+	}
 	 
 	 public int getBookings(Integer aadharCard) {
 		 int totalBookings=0;
