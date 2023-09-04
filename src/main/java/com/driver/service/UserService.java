@@ -14,8 +14,8 @@ import com.driver.repository.UserRepository;
 @Service
 public class UserService {
 
-	@Autowired
-	UserRepository userRepository;
+//	@Autowired
+	UserRepository userRepository=new UserRepository();
 	
 	public String addHotel(Hotel hotel){
 		return userRepository.addHotel(hotel);
