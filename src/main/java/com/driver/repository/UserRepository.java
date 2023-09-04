@@ -43,6 +43,7 @@ public class UserRepository{
 	 }
 	 
 	 public String getHotelWithMostFacilities() {
+		if(hotelsDb.isEmpty()) return "";
 		 int max=-1;
 		 for(String name:hotelsDb.keySet()) {
 
@@ -70,7 +71,7 @@ public class UserRepository{
 
 		int roomsBooked=booking.getNoOfRooms();
 
-		if(hotelsDb.isEmpty() || !hotelsDb.containsKey(hotelName)) return -1;
+		if(hotelsDb.isEmpty() || !hotelsDb.containsKey(hotelName) || hotelsDb.get(hotelName)==null) return -1;
 
 		if(roomsBooked==0 || roomsBooked>hotelsDb.get(hotelName).getAvailableRooms()) return -1;
 
@@ -102,7 +103,7 @@ public class UserRepository{
 	 
 	 public Hotel updateFacilities(List<Facility> newFacilities,String hotelName) {
 		if(hotelName==null || newFacilities==null || !hotelsDb.containsKey(hotelName) ||
-				hotelsDb.get(hotelName).getFacilities()==null)
+				hotelsDb.get(hotelName)==null || hotelsDb.get(hotelName).getFacilities()==null)
 			return new Hotel();
 		  Set<Facility> newUniqueFacilities=new HashSet<>();
 		 for(Facility f:newFacilities) {
