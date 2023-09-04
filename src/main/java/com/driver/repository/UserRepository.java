@@ -1,5 +1,6 @@
 package com.driver.repository;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -101,6 +102,7 @@ public class UserRepository{
 
 			String bookingId = UUID.randomUUID().toString();
 
+
 			booking.setBookingId(bookingId);
 
 			bookingsDb.put(bookingId, booking);
@@ -116,6 +118,7 @@ public class UserRepository{
 	 
 	 public int getBookings(Integer aadharCard) {
 		try{
+			if(aadharCard==null) return 0;
 			int totalBookings=0;
 			for(String uuid:bookingsDb.keySet()) {
 				if(bookingsDb.get(uuid).getBookingAadharCard()==aadharCard) totalBookings++;
@@ -139,6 +142,7 @@ public class UserRepository{
 			for(Facility f:newUniqueFacilities) {
 				hotelsDb.get(hotelName).getFacilities().add(f);
 			}
+			System.out.println(hotelsDb.get(hotelName).getFacilities().size());
 			return hotelsDb.get(hotelName);
 		}catch (Exception e){
               return new Hotel();
