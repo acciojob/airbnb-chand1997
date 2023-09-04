@@ -79,7 +79,7 @@ public class UserRepository{
 
 		booking.setAmountToBePaid(totalamount);
 
-		String bookingId= UUID.randomUUID().toString();
+		String bookingId = UUID.randomUUID().toString();
 
 		booking.setBookingId(bookingId);
 
