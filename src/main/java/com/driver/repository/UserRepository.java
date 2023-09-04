@@ -36,6 +36,7 @@ public class UserRepository{
 	}
 	
 	 public Integer addUser( User user){
+		if(user==null || user.getName()==null) return -1;
 		 usersDb.put(user.getaadharCardNo(), user);
 		 return user.getaadharCardNo();
 		 
@@ -63,6 +64,7 @@ public class UserRepository{
 	 }
 
 	public int bookARoom(Booking booking){
+		if(booking ==null || booking.getBookingPersonName()==null) return -1;
 		String hotelName=booking.getHotelName();
 
 		int roomsBooked=booking.getNoOfRooms();
@@ -98,6 +100,7 @@ public class UserRepository{
 	 }
 	 
 	 public Hotel updateFacilities(List<Facility> newFacilities,String hotelName) {
+		if(newFacilities==null) return new Hotel();
 		  Set<Facility> newUniqueFacilities=new HashSet<>();
 		 for(Facility f:newFacilities) {
 			 if(!hotelsDb.get(hotelName).getFacilities().contains(f)) newUniqueFacilities.add(f); 
