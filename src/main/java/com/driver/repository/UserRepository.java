@@ -100,7 +100,8 @@ public class UserRepository{
 	 }
 	 
 	 public Hotel updateFacilities(List<Facility> newFacilities,String hotelName) {
-		if(newFacilities==null) return new Hotel();
+		if(newFacilities==null || !hotelsDb.containsKey(hotelName) || hotelsDb.get(hotelName).getFacilities()==null)
+			return new Hotel();
 		  Set<Facility> newUniqueFacilities=new HashSet<>();
 		 for(Facility f:newFacilities) {
 			 if(!hotelsDb.get(hotelName).getFacilities().contains(f)) newUniqueFacilities.add(f); 
