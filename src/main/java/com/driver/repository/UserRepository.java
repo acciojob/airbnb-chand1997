@@ -80,7 +80,7 @@ public class UserRepository{
 		  
 	 }
 
-	public int bookARoom(Booking booking){
+	public int bookARoom (Booking booking){
 		try{
 			if(booking ==null || booking.getBookingPersonName()==null || booking.getHotelName()==null) return -1;
 			String hotelName=booking.getHotelName();
