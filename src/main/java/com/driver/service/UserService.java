@@ -39,7 +39,7 @@ public class UserService {
 		return userRepository.getBookings(aadharCard);
 	}
 	
-	public Hotel updateFacilities(List<Facility> newFacilities,String hotelName) throws Exception {
+	public Hotel updateFacilities(List<Facility> newFacilities,String hotelName)  {
 		return userRepository.updateFacilities(newFacilities, hotelName);
 	}
 }

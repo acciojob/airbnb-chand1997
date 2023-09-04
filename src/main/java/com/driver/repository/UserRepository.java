@@ -101,7 +101,7 @@ public class UserRepository{
 		 return totalBookings;
 	 }
 	 
-	 public Hotel updateFacilities(List<Facility> newFacilities,String hotelName) throws Exception {
+	 public Hotel updateFacilities(List<Facility> newFacilities,String hotelName)  {
 		try{
 			if(hotelName==null || newFacilities==null || !hotelsDb.containsKey(hotelName) ||
 					hotelsDb.get(hotelName)==null || hotelsDb.get(hotelName).getFacilities()==null)
@@ -115,7 +115,7 @@ public class UserRepository{
 			}
 			return hotelsDb.get(hotelName);
 		}catch (Exception e){
-
+              return new Hotel();
 		}
 
 	 }
