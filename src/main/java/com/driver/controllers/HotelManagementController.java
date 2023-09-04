@@ -81,7 +81,7 @@ public class HotelManagementController {
     }
 
     @PutMapping("/update-facilities/{hotelName}")
-    public Hotel updateFacilities(@RequestBody List<Facility> newFacilities, @PathVariable("hotelName") String hotelName){
+    public Hotel updateFacilities(@RequestBody List<Facility> newFacilities, @PathVariable("hotelName") String hotelName) throws Exception{
 
         //We are having a new facilites that a hotel is planning to bring.
         //If the hotel is already having that facility ignore that facility otherwise add that facility in the hotelDb

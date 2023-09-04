@@ -101,18 +101,23 @@ public class UserRepository{
 		 return totalBookings;
 	 }
 	 
-	 public Hotel updateFacilities(List<Facility> newFacilities,String hotelName) {
-		if(hotelName==null || newFacilities==null || !hotelsDb.containsKey(hotelName) ||
-				hotelsDb.get(hotelName)==null || hotelsDb.get(hotelName).getFacilities()==null)
-			return new Hotel();
-		  Set<Facility> newUniqueFacilities=new HashSet<>();
-		 for(Facility f:newFacilities) {
-			 if(!hotelsDb.get(hotelName).getFacilities().contains(f)) newUniqueFacilities.add(f); 
-		 }
-		 for(Facility f:newUniqueFacilities) {
-			 hotelsDb.get(hotelName).getFacilities().add(f);
-		 }
-		 return hotelsDb.get(hotelName);
+	 public Hotel updateFacilities(List<Facility> newFacilities,String hotelName) throws Exception {
+		try{
+			if(hotelName==null || newFacilities==null || !hotelsDb.containsKey(hotelName) ||
+					hotelsDb.get(hotelName)==null || hotelsDb.get(hotelName).getFacilities()==null)
+				return new Hotel();
+			Set<Facility> newUniqueFacilities=new HashSet<>();
+			for(Facility f:newFacilities) {
+				if(!hotelsDb.get(hotelName).getFacilities().contains(f)) newUniqueFacilities.add(f);
+			}
+			for(Facility f:newUniqueFacilities) {
+				hotelsDb.get(hotelName).getFacilities().add(f);
+			}
+			return hotelsDb.get(hotelName);
+		}catch (Exception e){
+
+		}
+
 	 }
 
 }
