@@ -36,7 +36,7 @@ public class UserRepository{
 	}
 	
 	 public Integer addUser( User user){
-		if(user==null || user.getName()==null) return -1;
+		if(user==null || user.getName()==null || usersDb.containsKey(user.getaadharCardNo())) return -1;
 		 usersDb.put(user.getaadharCardNo(), user);
 		 return user.getaadharCardNo();
 		 
@@ -64,14 +64,15 @@ public class UserRepository{
 	 }
 
 	public int bookARoom(Booking booking){
-		if(booking ==null || booking.getBookingPersonName()==null) return -1;
+		if(booking ==null || booking.getBookingPersonName()==null || booking.getHotelName()==null) return -1;
 		String hotelName=booking.getHotelName();
+
 
 		int roomsBooked=booking.getNoOfRooms();
 
 		if(hotelsDb.isEmpty() || !hotelsDb.containsKey(hotelName)) return -1;
 
-		if(roomsBooked>hotelsDb.get(hotelName).getAvailableRooms()) return -1;
+		if(roomsBooked==0 || roomsBooked>hotelsDb.get(hotelName).getAvailableRooms()) return -1;
 
 		int leftRooms=hotelsDb.get(hotelName).getAvailableRooms()-roomsBooked;
 
